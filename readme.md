@@ -14,6 +14,7 @@ This is a simple todo application with react and using LocalStorage API.
   also can organize it by customized tags.
 - Pin tasks at top of list
 - Add detail note
+- Toggle theme button (dark/light)
 
 ## TO TEST IT:
 

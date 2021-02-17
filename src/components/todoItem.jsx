@@ -22,7 +22,7 @@ const TodoItem = ({ data }) => {
         />
         <label htmlFor={data.id}>{data.title}</label>
       </div>
-      <button onClick={handleEvent}>
+      <button className="todo_item_delete" onClick={handleEvent}>
         <i className="fas fa-trash-alt"></i>
       </button>
     </div>

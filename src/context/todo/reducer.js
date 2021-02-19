@@ -15,7 +15,6 @@ export default (state, action) => {
         todos: payload,
       }
     case TOGGLE_TODO:
-      console.log(payload)
       return {
         ...state,
         todos: payload,

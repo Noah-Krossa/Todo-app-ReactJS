@@ -37,6 +37,7 @@ const TodoState = (props) => {
 
   const removeTodo = (id) => {
     const updatedTodos = todoStorageService.removeTodo(id)
+    console.log(todos)
     dispatch({
       type: 'REMOVE_TODO',
       payload: updatedTodos,

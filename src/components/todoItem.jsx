@@ -5,10 +5,10 @@ const TodoItem = ({ data }) => {
   const { removeTodo, toggleTodo } = useContext(TodoContext)
 
   const handleEvent = () => {
-    removeTodo(data.id, data.date)
+    removeTodo(data.id)
   }
   const handleOnChange = (e) => {
-    toggleTodo(data.id, data.date)
+    toggleTodo(data.id)
   }
 
   useEffect(() => {}, [data])

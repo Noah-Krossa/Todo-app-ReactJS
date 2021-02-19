@@ -15,31 +15,31 @@ const TodoState = (props) => {
   const getTodos = (date) => {
     dispatch({
       type: 'GET_TODOS',
-      payload: todoStorageService.getAllTodos(date),
+      payload: todoStorageService.getTodosByDate(date),
     })
   }
 
   const toggleTodo = (id, dateContex) => {
-    todoStorageService.updateTodoState(id)
+    const updatedTodos = todoStorageService.updateTodoState(id)
     dispatch({
-      type: 'GET_TODOS',
-      payload: todoStorageService.getAllTodos(dateContex),
+      type: 'TOGGLE_TODO',
+      payload: updatedTodos,
     })
   }
 
   const addTodo = (todo) => {
-    todoStorageService.addTodo(todo)
+    const updatedTodos = todoStorageService.addTodo(todo)
     dispatch({
-      type: 'UPDATE_TODOS',
-      payload: todoStorageService.getAllTodos(todo.date),
+      type: 'ADD_TODO',
+      payload: updatedTodos,
     })
   }
 
-  const removeTodo = (id, dateContex) => {
-    todoStorageService.removeTodo(id)
+  const removeTodo = (id) => {
+    const updatedTodos = todoStorageService.removeTodo(id)
     dispatch({
-      type: 'UPDATE_TODOS',
-      payload: todoStorageService.getAllTodos(dateContex),
+      type: 'REMOVE_TODO',
+      payload: updatedTodos,
     })
   }
 

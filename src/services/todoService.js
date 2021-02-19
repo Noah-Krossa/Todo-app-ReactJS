@@ -1,16 +1,17 @@
-import LocalDB from './localstorage'
 import moment from 'moment'
-/**
- * Se encarga de manejar la lista de todos
- */
 
 class TodoService {
   constructor() {
-    this.db = new LocalDB('todo_list')
-    this.todoStack = this.db.find()
+    this.dbName = 'todo_list'
+    this.todoStack = JSON.parse(localStorage.getItem(this.dbName))
+    if (typeof this.todoStack !== 'object') this.todoStack = []
   }
 
-  getAllTodos(date) {
+  updateLocalStorage() {
+    localStorage.setItem(this.dbName, JSON.stringify(this.todoStack))
+  }
+
+  getTodosByDate(date) {
     if (date) {
       return this.filterByDate(date)
     }
@@ -18,8 +19,11 @@ class TodoService {
   }
 
   removeTodo(id) {
+    const foundTodo = this.todoStack.filter((todo) => todo.id == id)
     this.todoStack = this.todoStack.filter((todo) => todo.id !== id)
-    this.db.update(this.todoStack)
+    this.updateLocalStorage()
+
+    return this.filterByDate(foundTodo.date)
   }
 
   /**
@@ -33,15 +37,22 @@ class TodoService {
       isDone,
       id: Math.random().toString(36).substr(2, 8),
     })
-    this.db.update(this.todoStack)
+    this.updateLocalStorage()
+    return this.filterByDate(date)
   }
 
   updateTodoState(id) {
+    let foundTodo
     this.todoStack = this.todoStack.map((todo) => {
-      if (id === todo.id) todo.isDone = !todo.isDone
+      if (id === todo.id) {
+        foundTodo = todo
+        todo.isDone = !todo.isDone
+      }
       return todo
     })
-    this.db.update(this.todoStack)
+    this.updateLocalStorage()
+    console.log(foundTodo)
+    return this.filterByDate(foundTodo.date)
   }
 
   /**

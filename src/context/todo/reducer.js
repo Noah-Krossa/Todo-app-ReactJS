@@ -1,4 +1,10 @@
-import { UPDATE_TODOS, GET_TODOS } from '../type'
+import {
+  UPDATE_TODOS,
+  GET_TODOS,
+  REMOVE_TODO,
+  ADD_TODO,
+  TOGGLE_TODO,
+} from '../type'
 
 export default (state, action) => {
   const { type, payload } = action
@@ -8,7 +14,18 @@ export default (state, action) => {
         ...state,
         todos: payload,
       }
-    case UPDATE_TODOS:
+    case TOGGLE_TODO:
+      console.log(payload)
+      return {
+        ...state,
+        todos: payload,
+      }
+    case ADD_TODO:
+      return {
+        ...state,
+        todos: payload,
+      }
+    case REMOVE_TODO:
       return {
         ...state,
         todos: payload,

@@ -1,14 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import TodoContext from '../context/todo/context'
 
 const TodoItem = ({ data }) => {
   const { removeTodo, toggleTodo } = useContext(TodoContext)
+
   const handleEvent = () => {
     removeTodo(data.id, data.date)
   }
   const handleOnChange = (e) => {
     toggleTodo(data.id, data.date)
   }
+
+  useEffect(() => {}, [data])
 
   return (
     <div className="todo_item">

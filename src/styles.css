@@ -135,6 +135,10 @@ input {
 .todo_item label {
   font-size: small;
   line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
 }
 .todo_item input {
   width: 10px;

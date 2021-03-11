@@ -22,7 +22,6 @@ class TodoService {
     const foundTodo = this.todoStack.filter((todo) => todo.id == id)
     this.todoStack = this.todoStack.filter((todo) => todo.id !== id)
     this.updateLocalStorage()
-    console.log(foundTodo)
     return this.filterByDate(foundTodo[0].date)
   }
 
@@ -60,6 +59,7 @@ class TodoService {
    * @param {string} date
    */
   filterByDate(date) {
+    if (!this.todoStack) this.todoStack = []
     const foundTodos = this.todoStack.filter((todo) => todo.date === date)
     return foundTodos
   }
